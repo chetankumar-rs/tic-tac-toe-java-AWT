@@ -10,18 +10,28 @@ public class App extends Frame implements ActionListener {
         // Set up the frame
         setTitle("Tic Tac Toe");
         setSize(400, 400);
-        setLayout(new GridLayout(3, 3));
+        setLayout(new BorderLayout()); // Using BorderLayout for title and grid separation
 
-        // Initialize buttons and add them to the frame
+        // Create a Label for the title
+        Label titleLabel = new Label("Tic-Tac-Titan", Label.CENTER);
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setBackground(Color.LIGHT_GRAY);
+        titleLabel.setPreferredSize(new Dimension(400, 40)); // Set preferred size for title
+        add(titleLabel, BorderLayout.NORTH); // Add title at the top
+
+        // Set up the Tic-Tac-Toe grid (buttons)
+        Panel gridPanel = new Panel();
+        gridPanel.setLayout(new GridLayout(3, 3)); // 3x3 grid layout for buttons
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
                 buttons[i][j] = new Button("");
                 buttons[i][j].setFont(new Font("Arial", Font.BOLD, 60));
                 buttons[i][j].setBackground(Color.LIGHT_GRAY);
                 buttons[i][j].addActionListener(this);
-                add(buttons[i][j]);
+                gridPanel.add(buttons[i][j]);
             }
         }
+        add(gridPanel, BorderLayout.CENTER); // Add the grid in the center of the frame
 
         // Handle window close event
         addWindowListener(new WindowAdapter() {
@@ -142,5 +152,5 @@ public class App extends Frame implements ActionListener {
 
     public static void main(String[] args) {
         new App();
-    }
+  }
 }
